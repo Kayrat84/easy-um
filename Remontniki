@@ -1,0 +1,19 @@
+class Remontniki:
+    
+    def __init__(self):
+        self.task = 0
+        self.tasks = {}
+    
+    def add_task(self, number_cab, description):
+        self.task += 1
+        self.tasks[self.task] = (number_cab, description)
+       
+    def show_tasks(self):
+        print(list(self.tasks.values()))
+        
+    def show_cab_with_tasks(self):
+        for i in self.tasks.values():
+            print(i[0])
+        
+    def task_completed(self, i):
+        del self.tasks[i]       
