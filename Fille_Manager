@@ -1,0 +1,43 @@
+class file_man:
+    
+    def __init__(self):
+        self.dct = {'main': {}}
+        self.place = self.dct['main']
+        self.path = ['main']
+    
+    def down(self, folder_name):
+        if folder_name in self.place:
+            self.place = self.place[folder_name]
+            self.path.append(folder_name)
+            Folders.show(self)
+        else:
+            print('Папка', folder_name, 'отсутствует')
+    
+    def new(self, name):
+        if name not in self.place:
+            self.place[name] = {}
+            Folders.show(self)
+        else:
+            print('Папка', name, 'уже создана')
+            Folders.show(self)
+    
+    def up(self):
+        if len(self.path) > 1:
+            self.place = self.dct
+            for i in self.path[:len(self.path)-1]:
+                self.place = self.place[i]
+                Folders.show(self)
+        else:
+            print('это корневой каталог')
+    
+    def show(self):
+        print('---', self.path[-1], '---\n')
+        print('\n'.join([i for i in self.place]))
+    
+    def delete(self,folder):
+        if folder in self.place.keys():
+            del self.place[folder]
+        else:
+            print('Такой папки нет')
+        Folders.show(self)
+    
