@@ -1,0 +1,26 @@
+class table:
+        
+    def _init_(self):
+        ...
+    def creat_db(self):
+        import sqlite3 as sq
+        cn = sq.connect('table.db')
+        cr = cn.cursor()
+        cr.execute('create table if not exists users(id integer, name varchar(30), age integer)')
+        cn.commit()
+    
+    def insert_data(self, data):
+        import sqlite3 as sq
+        cn = sq.connect('table.db')
+        cr = cn.cursor()
+        cr.executemany('insert into users(id, name, age) values(?, ?, ?)', data)
+        cn.commit()
+    
+    def show_table(self):
+        import sqlite3 as sq
+        cn = sq.connect('table.db')
+        cr = cn.cursor()
+        cr.fetchall()
+        
+    
+
